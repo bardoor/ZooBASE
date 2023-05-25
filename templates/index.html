@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>ЗвероБАЗА</title>
+  <!-- Font Awesome  -->
+  <link href="../static/css/tabulator.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+  <!-- Bootstrap core CSS  -->
+  <link rel="stylesheet" href="../static/css/bootstrap.min.css">
+  <!-- Material Design Bootstrap  -->
+  <link rel="stylesheet" href="../static/css/mdb.min.css">
+
+  <style>
+    .dropdown-menu {
+      max-height: 200px;
+      overflow-y: auto;
+    }
+
+    .mdb-select {
+      margin-left: 35px;
+    }
+  </style>
+
+</head>
+
+<body class="fixed-sn white-skin">
+
+  <!-- Main Navigation  -->
+  <header>
+
+    <!-- Sidebar navigation  -->
+    <div id="slide-out" class="side-nav sn-bg-4 fixed">
+      <ul class="custom-scrollbar">
+
+        <!-- Logo  -->
+        <li class="logo-sn waves-effect py-3">
+          <div class="text-center">
+            <a href="#" class="pl-0">
+              <h1>ЗвероБАЗА</h1>
+            </a>
+          </div>
+        </li>
+        <!-- Side navigation links  -->
+        <li>
+          <ul class="collapsible collapsible-accordion">
+            <li>
+              <a id="employeeBase" href="#" class="collapsible-header waves-effect"><i class="w-fa far fa-solid fa-user"></i>Персонал</a>
+            </li>
+            <li>
+              <a id="animalBase" href="#" class="collapsible-header waves-effect"><i class="w-fa far fa-solid fa-hippo"></i>Животные</a>
+            </li>
+          </ul>
+        </li>
+        <!-- Side navigation links  -->
+
+      </ul>
+      <div class="sidenav-bg mask-strong"></div>
+    </div>
+    <!-- Sidebar navigation  -->
+
+    <!-- Navbar  -->
+    <nav class="navbar fixed-top navbar-expand-lg scrolling-navbar double-nav">
+
+      <!-- SideNav slide-out button  -->
+      <div class="float-left">
+        <a href="#" data-activates="slide-out" class="button-collapse"><i class="fas fa-bars"></i></a>
+      </div>
+
+      <!-- Breadcrumb  -->
+      <div class="breadcrumb-dn mr-auto">
+        <p>Таблицы, таблицы, таблицы...</p>
+      </div>
+
+    
+      </ul>
+      <!-- Navbar links  -->
+
+    </nav>
+    <!-- Navbar  -->
+
+  </header>
+  <!-- Main Navigation  -->
+
+  <!-- Main layout  -->
+  <main>
+    <div class="container-fluid mb-5">
+
+      <!-- Section: Basic examples -->
+      <section>
+
+        <!-- Gird column -->
+        <div class="col-md-12">
+          <div class="buttons">
+            <button id="add-btn" class="btn btn-gplus waves-effect waves-light">
+              <i class="fa-solid fa-plus"></i> Новая запись</button>
+            <button id="del-btn" class="btn btn-pin waves-effect waves-light"><i class="fa-solid fa-minus"></i> Удалить выбранные записи</button>
+            <button id="apply-btn" class="btn btn-so waves-effect waves-light" disabled><i class="fa-solid fa-check"></i> Применить изменения</button>
+          </div>
+          <div id="main-table">
+
+          </div>
+        </div>
+      </section>
+
+
+    </div>
+
+  </main>
+  <!-- Main layout -->
+
+  <!-- Footer  -->
+  <footer class="page-footer pt-0 mt-5">
+
+    <!-- Copyright  -->
+    <div class="footer-copyright py-3 text-center">
+      <div class="container-fluid">
+        <a href="https://ru.wikipedia.org/wiki/%D0%97%D0%BE%D0%BE%D0%BF%D0%B0%D1%80%D0%BA" target="_blank"> Зоопарки -
+          это наша жизнь. </a>
+      </div>
+    </div>
+    <!-- Copyright  -->
+
+  </footer>
+  <!-- Footer  -->
+
+  <!-- Модальное окно добавления сущности -->
+  <div class="modal fade" id="create-entity-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog cascading-modal" role="document">
+      <!-- Content -->
+      <div class="modal-content">
+
+        <!-- Header -->
+        <div class="modal-header light-blue darken-3 white-text">
+          <h4 class=""><i class="fa-solid fa-plus"></i> Новый труженик</h4>
+          <button type="button" class="close waves-effect waves-light" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <!-- Body -->
+        <div class="modal-body mb-0">
+          <div class="md-form form-sm">
+            <i class="fas fa-user prefix"></i>
+            <input type="text" id="form19" class="form-control form-control-sm">
+            <label for="form19">ФИО</label>
+          </div>
+
+          <div class="md-form form-sm">
+            <i class="fa-solid fa-calendar-days prefix"></i>
+            <input type="date" id="form20" class="form-control form-control-sm">
+            <label for="form20" style="margin-bottom: 0; margin-top: 10px; font-size:medium;">Дата рождения</label>
+          </div>
+
+          <div class="md-form form-sm">
+            <i class="fa-solid fa-address-card prefix"></i>
+            <select id="mdb-select" class="mdb-select md-form" searchable="Поиск должности...">
+              <option value="" disabled selected>Search select</option>
+            </select>
+          </div>
+        </div>
+
+
+        <div class="text-center mt-1-half">
+          <button id="add-in-table" class="btn btn-info mb-2">Добавить</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  </div>
+
+
+  <!-- SCRIPTS  -->
+  <!-- JQuery  -->
+  <script src="https://code.jquery.com/jquery-3.7.0.min.js"
+    integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+  <!-- Bootstrap tooltips  -->
+  <script type="text/javascript" src="../static/js/tabulator.min.js"></script>
+  <script type="text/javascript" src="../static/js/popper.min.js"></script>
+  <!-- Bootstrap core JavaScript  -->
+  <script type="text/javascript" src="../static/js/bootstrap.min.js"></script>
+  <!-- MDB core JavaScript  -->
+  <script type="text/javascript" src="../static/js/mdb.min.js"></script>
+
+  <script type="text/javascript" src="../static/js/luxon.min.js"></script>
+  <script src="https://kit.fontawesome.com/09529894d1.js" crossorigin="anonymous"></script>
+
+  <!-- Custom scripts -->
+  <script type="text/javascript" src="../static/js/table.js"></script>
+  <script>
+    // SideNav Initialization
+    $(".button-collapse").sideNav();
+
+    let container = document.querySelector('.custom-scrollbar');
+    var ps = new PerfectScrollbar(container, {
+      wheelSpeed: 2,
+      wheelPropagation: true,
+      minScrollbarLength: 20
+    });
+
+
+    $('html body.fixed-sn.white-skin main div.container-fluid.mb-5 section div.col-md-12 div.card div.card-body div#main-table_wrapper.dataTables_wrapper.dt-bootstrap4 div.row div.col-sm-12.col-md-6 div#main-table_filter.dataTables_filter label').remove();
+
+  </script>
+</body>
+
+</html>
